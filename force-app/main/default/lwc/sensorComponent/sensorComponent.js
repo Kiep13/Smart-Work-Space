@@ -8,10 +8,13 @@ export default class SensorComponent extends LightningElement {
   @track events;
   @track error;
 
+  @track eventsSize;
+
   onValueSelection(event){
     getEvents({id: event.target.value})
     .then(result => {
         this.events = result;
+        this.eventsSize = result.length > 0;
     })
     .catch(error => {
       this.error = error;

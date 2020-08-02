@@ -3,53 +3,51 @@
 
       <div class="slds-m-around_medium">
         
-        <p>Choose spensor</p>
-        <div class="slds-form-element__control">
-          <div class="slds-select_container">
-            <select class="slds-select" id="SmartPicklist" onchange={onValueSelection}>
-              <template for:each={sensors.data} for:item="sensorItem">
-                <option key={sensorItem.Id} value={sensorItem.Id}>
-                  {sensorItem.Name}
-                </option>
-              </template>
-            </select>
-          </div>
-
-          <template if:true={events}>
-            <p>Sensor events</p>
-            <div class="slds-table_container">
-              <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
-                  <thead>
-                    <td>X</td>
-                    <td>Y</td>
-                    <td>Z</td>
-                    <td>Modulus difference veectors</td>
-                  </thead>
-                  <!-- <tr>
-                    <td>11</td>
-                    <td>12</td>
-                    <td>13</td>
-                  </tr>
-                  <tr>
-                    <td>12</td>
-                    <td>13</td>
-                    <td>14</td>
-                  </tr> -->
-                  <template for:each={events} for:item="eventItem">
-                    <tr key={eventItem.Name}>
-                      <td>{eventItem.x__c}</td>
-                      <td>{eventItem.y__c}</td>
-                      <td>{eventItem.z__c}</td>
-                      <td>{eventItem.Modulus_difference_Vectors__c}</td>
-                    </tr>
-                  </template>
-
-              </table>
+        <template if:true={sensors}>
+          <p>Choose spensor</p>
+          <div class="slds-form-element__control">
+            <div class="slds-select_container">
+              <select class="slds-select" id="SmartPicklist" onchange={onValueSelection}>
+                <template for:each={sensors.data} for:item="sensorItem">
+                  <option key={sensorItem.Id} value={sensorItem.Id}>
+                    {sensorItem.Name}
+                  </option>
+                </template>
+              </select>
             </div>
-          </template>
 
-          <template if:true={error}>{error}</template>
-        </div>
+            <template if:true={eventsSize}>
+              <p>Sensor events</p>
+              <div class="slds-table_container">
+                <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+                    <thead>
+                      <td>X</td>
+                      <td>Y</td>
+                      <td>Z</td>
+                      <td>Modulus difference veectors</td>
+                    </thead>
+                    <template for:each={events} for:item="eventItem">
+                      <tr key={eventItem.Name}>
+                        <td>{eventItem.x__c}</td>
+                        <td>{eventItem.y__c}</td>
+                        <td>{eventItem.z__c}</td>
+                        <td>{eventItem.Modulus_difference_Vectors__c}</td>
+                      </tr>
+                    </template>
+
+                </table>
+              </div>
+            </template>
+
+            <template if:true={events}>
+              <template if:false={eventsSize}>No suitable events were found</template>
+            </template>
+
+            <template if:false={events}>Choose sensor</template>
+
+            <template if:true={error}>{error}</template>
+          </div>
+        </template>
       </div>
     </lightning-card>
   </template>
