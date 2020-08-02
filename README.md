@@ -7,7 +7,7 @@ Before starting the project, you need to create two new objects in your org.
 + Sensor Event
   + Name (Autonumber)
   + Previous Event (Lookup(Sensor Event))
-  + Modulus difference Vectors (Formula(Number = SQRT( (x*x) + (y*y) + (z*z) ) ))
+  + Modulus difference Vectors (Formula(Number = SQRT( (x\*x) + (y\*y) + (z*z) ) ))
   + x (Number)
   + y (Number)
   + z (Number)
